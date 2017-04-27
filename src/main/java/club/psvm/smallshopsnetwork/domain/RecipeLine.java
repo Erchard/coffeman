@@ -22,7 +22,7 @@ public class RecipeLine {
     @GeneratedValue
     Long id;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Recipe.class)
     Recipe recipe;
 
     @ManyToOne(targetEntity = RawStuff.class)
@@ -32,4 +32,43 @@ public class RecipeLine {
 
     boolean deleted;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
+    public RawStuff getRawStuff() {
+        return rawStuff;
+    }
+
+    public void setRawStuff(RawStuff rawStuff) {
+        this.rawStuff = rawStuff;
+    }
+
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 }
