@@ -3,6 +3,7 @@ package club.psvm.smallshopsnetwork.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 
 /**
  * Created by JAVA-P on 27.04.2017.
@@ -23,6 +24,8 @@ public class Stuff {
 
      String name;
 
+    BigDecimal accountingPrice;
+
      boolean deleted;
 
     public Long getId() {
@@ -39,6 +42,14 @@ public class Stuff {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public BigDecimal getAccountingPrice() {
+        return accountingPrice;
+    }
+
+    public void setAccountingPrice(BigDecimal accountingPrice) {
+        this.accountingPrice = accountingPrice;
     }
 
     public boolean isDeleted() {
