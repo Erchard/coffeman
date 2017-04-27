@@ -21,8 +21,8 @@ public class InvoiceLine {
      @ManyToOne(targetEntity = Invoice.class,fetch = FetchType.EAGER)
      Invoice invoice;
 
-     @ManyToOne(targetEntity = Product.class,fetch = FetchType.EAGER)
-     Product product;
+     @ManyToOne(targetEntity = Stuff.class,fetch = FetchType.EAGER)
+     Stuff stuff;
 
      BigDecimal count;
 
@@ -48,12 +48,12 @@ public class InvoiceLine {
         this.invoice = invoice;
     }
 
-    public Product getProduct() {
-        return product;
+    public Stuff getStuff() {
+        return stuff;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setStuff(Stuff stuff) {
+        this.stuff = stuff;
     }
 
     public BigDecimal getCount() {
