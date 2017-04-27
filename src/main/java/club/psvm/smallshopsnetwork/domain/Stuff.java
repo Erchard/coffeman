@@ -3,6 +3,7 @@ package club.psvm.smallshopsnetwork.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
 /**
@@ -25,6 +26,14 @@ public class Stuff {
      String name;
 
     BigDecimal accountingPrice;
+
+    @ManyToOne(targetEntity = RawStuff.class)
+    RawStuff rawStuff;
+
+    BigDecimal rawFactor;
+
+    @ManyToOne(targetEntity = Unit.class)
+    Unit unit;
 
      boolean deleted;
 
@@ -50,6 +59,30 @@ public class Stuff {
 
     public void setAccountingPrice(BigDecimal accountingPrice) {
         this.accountingPrice = accountingPrice;
+    }
+
+    public RawStuff getRawStuff() {
+        return rawStuff;
+    }
+
+    public void setRawStuff(RawStuff rawStuff) {
+        this.rawStuff = rawStuff;
+    }
+
+    public BigDecimal getRawFactor() {
+        return rawFactor;
+    }
+
+    public void setRawFactor(BigDecimal rawFactor) {
+        this.rawFactor = rawFactor;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 
     public boolean isDeleted() {
