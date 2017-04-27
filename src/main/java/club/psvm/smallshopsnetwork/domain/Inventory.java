@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,5 +30,68 @@ public class Inventory {
     @Transient
     List<InventoryLine> inventoryLineList = new ArrayList<>();
 
+
+
+
     boolean deleted;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public List<InventoryLine> getInventoryLineList() {
+        return inventoryLineList;
+    }
+
+    public void setInventoryLineList(List<InventoryLine> inventoryLineList) {
+        this.inventoryLineList = inventoryLineList;
+    }
+
+
+    public BigDecimal getExpectedTotalSumm() {
+
+        BigDecimal  expectedTotalSumm = new BigDecimal("0.00");
+        for(InventoryLine inventoryLine : inventoryLineList){
+            expectedTotalSumm = expectedTotalSumm.add(inventoryLine.getExpectedQuantity().multiply(inventoryLine.getAccountingPrice()));
+        }
+        return expectedTotalSumm;
+    }
+
+    public BigDecimal getRealTotalSumm() {
+        BigDecimal  realTotalSumm = new BigDecimal("0.00");
+        for(InventoryLine inventoryLine : inventoryLineList){
+            realTotalSumm = realTotalSumm.add(inventoryLine.getRealQuantity().multiply(inventoryLine.getAccountingPrice()));
+        }
+
+        return realTotalSumm;
+    }
+
+    public BigDecimal getDifferenceTotalSumm() {
+        BigDecimal  differenceTotalSumm = new BigDecimal("0.00");
+        for(InventoryLine inventoryLine : inventoryLineList){
+            differenceTotalSumm = differenceTotalSumm.add(inventoryLine.getDifferenceSumm());
+        }
+
+        return differenceTotalSumm;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 }

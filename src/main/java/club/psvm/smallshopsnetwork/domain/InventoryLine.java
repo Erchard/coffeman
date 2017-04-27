@@ -27,14 +27,76 @@ public class InventoryLine {
 
     RawStuff rawStuff;
 
+    BigDecimal accountingPrice;
+
     BigDecimal expectedQuantity;
 
     BigDecimal realQuantity;
 
-    BigDecimal difference;
 
     boolean deleted;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public RawStuff getRawStuff() {
+        return rawStuff;
+    }
+
+    public void setRawStuff(RawStuff rawStuff) {
+        this.rawStuff = rawStuff;
+    }
+
+    public BigDecimal getAccountingPrice() {
+        return accountingPrice;
+    }
+
+    public void setAccountingPrice(BigDecimal accountingPrice) {
+        this.accountingPrice = accountingPrice;
+    }
+
+    public BigDecimal getExpectedQuantity() {
+        return expectedQuantity;
+    }
+
+    public void setExpectedQuantity(BigDecimal expectedQuantity) {
+        this.expectedQuantity = expectedQuantity;
+    }
+
+    public BigDecimal getRealQuantity() {
+        return realQuantity;
+    }
+
+    public void setRealQuantity(BigDecimal realQuantity) {
+        this.realQuantity = realQuantity;
+    }
+
+    public BigDecimal getDifference() {
+        return realQuantity.subtract(expectedQuantity);
+    }
+
+    public BigDecimal getDifferenceSumm() {
+        return getDifference().multiply(accountingPrice);
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 }
