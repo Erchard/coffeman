@@ -25,6 +25,7 @@ public class InventoryLine {
     @ManyToOne(targetEntity = Inventory.class)
     Inventory inventory;
 
+    @ManyToOne(targetEntity = RawStuff.class)
     RawStuff rawStuff;
 
     BigDecimal accountingPrice;
