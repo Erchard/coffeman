@@ -23,6 +23,7 @@ public class Invoice {
     @GeneratedValue
     Long id;
 
+    String incomingNumber;
 
     LocalDateTime dateTime;
 
@@ -31,6 +32,8 @@ public class Invoice {
 
     @Transient
     List<InvoiceLine> invoiceLineList = new ArrayList<>();
+
+    String note;
 
     boolean actual;
 
@@ -42,6 +45,22 @@ public class Invoice {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getIncomingNumber() {
+        return incomingNumber;
+    }
+
+    public void setIncomingNumber(String incomingNumber) {
+        this.incomingNumber = incomingNumber;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public LocalDateTime getDateTime() {
