@@ -31,7 +31,7 @@ public class Inventory {
     List<InventoryLine> inventoryLineList = new ArrayList<>();
 
 
-boolean actual;
+    boolean actual;
 
     boolean deleted;
 
@@ -62,16 +62,16 @@ boolean actual;
 
     public BigDecimal getExpectedTotalSumm() {
 
-        BigDecimal  expectedTotalSumm = new BigDecimal("0.00");
-        for(InventoryLine inventoryLine : inventoryLineList){
+        BigDecimal expectedTotalSumm = new BigDecimal("0.00");
+        for (InventoryLine inventoryLine : inventoryLineList) {
             expectedTotalSumm = expectedTotalSumm.add(inventoryLine.getExpectedQuantity().multiply(inventoryLine.getAccountingPrice()));
         }
         return expectedTotalSumm;
     }
 
     public BigDecimal getRealTotalSumm() {
-        BigDecimal  realTotalSumm = new BigDecimal("0.00");
-        for(InventoryLine inventoryLine : inventoryLineList){
+        BigDecimal realTotalSumm = new BigDecimal("0.00");
+        for (InventoryLine inventoryLine : inventoryLineList) {
             realTotalSumm = realTotalSumm.add(inventoryLine.getRealQuantity().multiply(inventoryLine.getAccountingPrice()));
         }
 
@@ -79,8 +79,8 @@ boolean actual;
     }
 
     public BigDecimal getDifferenceTotalSumm() {
-        BigDecimal  differenceTotalSumm = new BigDecimal("0.00");
-        for(InventoryLine inventoryLine : inventoryLineList){
+        BigDecimal differenceTotalSumm = new BigDecimal("0.00");
+        for (InventoryLine inventoryLine : inventoryLineList) {
             differenceTotalSumm = differenceTotalSumm.add(inventoryLine.getDifferenceSumm());
         }
 
