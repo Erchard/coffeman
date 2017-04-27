@@ -44,3 +44,5 @@ MovementStuff - внутреннее перемещение товаров со 
 storeSender - склад/магазин отправитель
 
 storeRecipient - склад/магазин получатель
+
+CashVoucher - кассовый чек

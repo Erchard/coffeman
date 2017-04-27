@@ -3,6 +3,7 @@ package club.psvm.smallshopsnetwork.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
 /**
@@ -23,6 +24,9 @@ public class Product {
      String name;
 
      BigDecimal currentPrice;
+
+     @ManyToOne(targetEntity = Unit.class)
+     Unit unit;
 
      boolean deleted;
 
@@ -48,6 +52,14 @@ public class Product {
 
     public void setCurrentPrice(BigDecimal currentPrice) {
         this.currentPrice = currentPrice;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 
     public boolean isDeleted() {
