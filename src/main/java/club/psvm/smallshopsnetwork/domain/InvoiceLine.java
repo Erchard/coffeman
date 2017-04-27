@@ -7,10 +7,10 @@ import java.math.BigDecimal;
  * Created by JAVA-P on 27.04.2017.
  */
  
- /* Создано в www.gateon.net
- * Все права на данный программный код принадлежат компании GateOn
- * Created by www.gateon.net
- * All rights to the software code are owned by GateOn
+ /* Создано в www.psvm.club
+ * Все права на данный программный код принадлежат компании PSVM.club
+ * Created by www.psvm.club
+ * All rights to the software code are owned by PSVM.club
 */
  @Entity
 public class InvoiceLine {
