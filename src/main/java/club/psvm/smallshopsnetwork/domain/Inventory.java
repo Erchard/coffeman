@@ -1,9 +1,6 @@
 package club.psvm.smallshopsnetwork.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,6 +24,9 @@ public class Inventory {
 
     LocalDateTime dateTime;
 
+    @ManyToOne(targetEntity = Store.class)
+    Store store;
+
     @Transient
     List<InventoryLine> inventoryLineList = new ArrayList<>();
 
@@ -49,6 +49,14 @@ public class Inventory {
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public List<InventoryLine> getInventoryLineList() {
