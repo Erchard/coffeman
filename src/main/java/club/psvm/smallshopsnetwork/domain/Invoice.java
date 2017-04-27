@@ -32,6 +32,7 @@ public class Invoice {
     @Transient
     List<InvoiceLine> invoiceLineList = new ArrayList<>();
 
+    boolean actual;
 
     boolean deleted;
 
@@ -76,6 +77,13 @@ public class Invoice {
         return total;
     }
 
+    public boolean isActual() {
+        return actual;
+    }
+
+    public void setActual(boolean actual) {
+        this.actual = actual;
+    }
 
     public boolean isDeleted() {
         return deleted;

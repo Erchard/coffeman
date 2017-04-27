@@ -31,7 +31,7 @@ public class Inventory {
     List<InventoryLine> inventoryLineList = new ArrayList<>();
 
 
-
+boolean actual;
 
     boolean deleted;
 
@@ -85,6 +85,14 @@ public class Inventory {
         }
 
         return differenceTotalSumm;
+    }
+
+    public boolean isActual() {
+        return actual;
+    }
+
+    public void setActual(boolean actual) {
+        this.actual = actual;
     }
 
     public boolean isDeleted() {
