@@ -21,6 +21,8 @@ public class Product {
 
      String name;
 
+     boolean deleted;
+
     public Long getId() {
         return id;
     }
@@ -35,5 +37,13 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }
