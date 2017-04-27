@@ -27,6 +27,7 @@ public class Invoice {
 
 
 
+
      boolean deleted;
 
      public Long getId() {
