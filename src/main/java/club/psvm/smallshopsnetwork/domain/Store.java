@@ -23,6 +23,7 @@ public class Store {
 
      String name;
 
+
     @OneToOne
     CashBox cashBox;
 

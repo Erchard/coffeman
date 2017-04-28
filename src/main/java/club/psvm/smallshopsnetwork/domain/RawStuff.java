@@ -25,6 +25,10 @@ public class RawStuff {
 
     String name;
 
+
+    @ManyToOne
+    Company company;
+
     BigDecimal accountingPrice;
 
     @ManyToOne(targetEntity = Unit.class)
@@ -46,6 +50,14 @@ public class RawStuff {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public BigDecimal getAccountingPrice() {

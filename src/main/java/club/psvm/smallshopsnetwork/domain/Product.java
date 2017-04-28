@@ -23,6 +23,10 @@ public class Product {
 
      String name;
 
+
+    @ManyToOne
+    Company company;
+
      BigDecimal currentPrice;
 
      @ManyToOne(targetEntity = Unit.class)
@@ -44,6 +48,14 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public BigDecimal getCurrentPrice() {

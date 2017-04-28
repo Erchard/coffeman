@@ -3,6 +3,7 @@ package club.psvm.smallshopsnetwork.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * Created by JAVA-P on 28.04.2017.
@@ -19,11 +20,23 @@ public class CashBox {
      @Id @GeneratedValue
     Long account;
 
+
+    @ManyToOne
+    Company company;
+
     public Long getAccount() {
         return account;
     }
 
     public void setAccount(Long account) {
         this.account = account;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }

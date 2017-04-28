@@ -1,9 +1,6 @@
 package club.psvm.smallshopsnetwork.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * Created by JAVA-P on 27.04.2017.
@@ -23,6 +20,8 @@ public class Contractor  {
      Long id;
 
      String name;
+
+
 
      @OneToOne
      CashBox cashBox;
@@ -44,6 +43,8 @@ public class Contractor  {
      public void setName(String name) {
           this.name = name;
      }
+
+
 
      public CashBox getCashBox() {
           return cashBox;
