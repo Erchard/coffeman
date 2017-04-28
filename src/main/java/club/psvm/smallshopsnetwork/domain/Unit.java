@@ -24,6 +24,13 @@ public class Unit {
 
     boolean deleted;
 
+    public Unit() {
+    }
+
+    public Unit(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
