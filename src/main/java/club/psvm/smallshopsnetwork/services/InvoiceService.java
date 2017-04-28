@@ -37,9 +37,10 @@ public class InvoiceService {
         if (invoice == null) return new Invoice();
 
         List<InvoiceLine> lineList = invoiceLineRepository.findAllByInvoice(invoice);
-        if (lineList != null)
+        if (lineList != null) {
+            lineList.removeIf(InvoiceLine::isDeleted);
             invoice.setInvoiceLineList(lineList);
-
+        }
         return invoice;
     }
 
