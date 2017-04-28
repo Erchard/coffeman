@@ -1,6 +1,6 @@
-package club.psvm.smallshopsnetwork.domain;
+package club.psvm.smallshopsnetwork.domain.docs;
 
-import club.psvm.smallshopsnetwork.domain.actors.Company;
+import club.psvm.smallshopsnetwork.domain.RawStuff;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,24 +17,20 @@ import java.math.BigDecimal;
  * Created by www.psvm.club
  * All rights to the software code are owned by PSVM.club
 */
-
 @Entity
-public class RawStuff {
+public class RecipeLine {
 
     @Id
     @GeneratedValue
     Long id;
 
-    String name;
+    @ManyToOne(targetEntity = Recipe.class)
+    Recipe recipe;
 
+    @ManyToOne(targetEntity = RawStuff.class)
+    RawStuff rawStuff;
 
-    @ManyToOne
-    Company company;
-
-    BigDecimal accountingPrice;
-
-    @ManyToOne(targetEntity = Unit.class)
-    Unit unit;
+    BigDecimal quantity;
 
     boolean deleted;
 
@@ -46,36 +42,28 @@ public class RawStuff {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Recipe getRecipe() {
+        return recipe;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
-    public Company getCompany() {
-        return company;
+    public RawStuff getRawStuff() {
+        return rawStuff;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setRawStuff(RawStuff rawStuff) {
+        this.rawStuff = rawStuff;
     }
 
-    public BigDecimal getAccountingPrice() {
-        return accountingPrice;
+    public BigDecimal getQuantity() {
+        return quantity;
     }
 
-    public void setAccountingPrice(BigDecimal accountingPrice) {
-        this.accountingPrice = accountingPrice;
-    }
-
-    public Unit getUnit() {
-        return unit;
-    }
-
-    public void setUnit(Unit unit) {
-        this.unit = unit;
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
     }
 
     public boolean isDeleted() {

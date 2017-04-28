@@ -1,6 +1,11 @@
-package club.psvm.smallshopsnetwork.domain;
+package club.psvm.smallshopsnetwork.domain.actors;
 
-import javax.persistence.*;
+import club.psvm.smallshopsnetwork.domain.CashBox;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  * Created by JAVA-P on 27.04.2017.
@@ -12,17 +17,17 @@ import javax.persistence.*;
  * All rights to the software code are owned by GateOn
 */
  @Entity
-public class Employee {
+public class Store {
 
-     @Id @GeneratedValue
+     @Id
+     @GeneratedValue
      Long id;
 
      String name;
 
 
-
-     @OneToOne
-     CashBox cashBox;
+    @OneToOne
+    CashBox cashBox;
 
      boolean deleted;
 
@@ -41,8 +46,6 @@ public class Employee {
     public void setName(String name) {
         this.name = name;
     }
-
-
 
     public CashBox getCashBox() {
         return cashBox;

@@ -1,10 +1,11 @@
-package club.psvm.smallshopsnetwork.domain;
+package club.psvm.smallshopsnetwork.domain.docs;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import club.psvm.smallshopsnetwork.domain.Product;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by JAVA-P on 27.04.2017.
@@ -16,19 +17,19 @@ import java.math.BigDecimal;
  * All rights to the software code are owned by PSVM.club
 */
 @Entity
-public class RecipeLine {
+public class Recipe {
 
     @Id
     @GeneratedValue
     Long id;
 
-    @ManyToOne(targetEntity = Recipe.class)
-    Recipe recipe;
-
-    @ManyToOne(targetEntity = RawStuff.class)
-    RawStuff rawStuff;
+    @OneToOne(targetEntity = Product.class)
+    Product product;
 
     BigDecimal quantity;
+
+    @Transient
+    List<RecipeLine> recipeLineList = new ArrayList<>();
 
     boolean deleted;
 
@@ -40,20 +41,12 @@ public class RecipeLine {
         this.id = id;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    public RawStuff getRawStuff() {
-        return rawStuff;
-    }
-
-    public void setRawStuff(RawStuff rawStuff) {
-        this.rawStuff = rawStuff;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public BigDecimal getQuantity() {
@@ -62,6 +55,14 @@ public class RecipeLine {
 
     public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
+    }
+
+    public List<RecipeLine> getRecipeLineList() {
+        return recipeLineList;
+    }
+
+    public void setRecipeLineList(List<RecipeLine> recipeLineList) {
+        this.recipeLineList = recipeLineList;
     }
 
     public boolean isDeleted() {

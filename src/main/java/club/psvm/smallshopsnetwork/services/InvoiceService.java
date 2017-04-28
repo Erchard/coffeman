@@ -1,7 +1,7 @@
 package club.psvm.smallshopsnetwork.services;
 
-import club.psvm.smallshopsnetwork.domain.Invoice;
-import club.psvm.smallshopsnetwork.domain.InvoiceLine;
+import club.psvm.smallshopsnetwork.domain.docs.Invoice;
+import club.psvm.smallshopsnetwork.domain.docs.InvoiceLine;
 import club.psvm.smallshopsnetwork.repositories.InvoiceLineRepository;
 import club.psvm.smallshopsnetwork.repositories.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;

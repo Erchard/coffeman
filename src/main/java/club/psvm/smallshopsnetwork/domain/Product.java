@@ -1,5 +1,7 @@
 package club.psvm.smallshopsnetwork.domain;
 
+import club.psvm.smallshopsnetwork.domain.actors.Company;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

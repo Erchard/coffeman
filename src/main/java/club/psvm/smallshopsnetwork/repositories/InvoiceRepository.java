@@ -1,6 +1,6 @@
 package club.psvm.smallshopsnetwork.repositories;
 
-import club.psvm.smallshopsnetwork.domain.Invoice;
+import club.psvm.smallshopsnetwork.domain.docs.Invoice;
 import org.springframework.data.repository.CrudRepository;
 
 /**
