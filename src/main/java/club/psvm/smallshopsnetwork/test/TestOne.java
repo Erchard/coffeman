@@ -9,5 +9,6 @@ public class TestOne {
     public TestOne() {
         System.out.println("Отлично! Я смержил твой коммит");
         System.out.println("Отлично! Получил, тестирую");
+        System.out.println("Тест 3");
     }
 }

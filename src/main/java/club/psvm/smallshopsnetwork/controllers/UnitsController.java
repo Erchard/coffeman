@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -29,9 +31,15 @@ public class UnitsController {
 
     @RequestMapping("/units")
     String findAll(ModelMap modelMap) {
-        modelMap.addAttribute("units",unitService.findAll());
+        modelMap.addAttribute("units", unitService.findAll());
         return "units";
     }
 
+
+    @RequestMapping(value = "/units/delete", method = RequestMethod.POST)
+    String delete(@RequestParam Long id) {
+        unitService.delete(id);
+        return "redirect:/units";
+    }
 
 }
