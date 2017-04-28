@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Единицы измерения</title>
+</head>
+<body>
+<table border="1" cellspacing="0">
+    <tr>
+        <td>ID</td>
+        <td>Наименование</td>
+        <td>Действия</td>
+    </tr>
+    <tr th:each="unit : ${units}">
+        <td th:text="${unit.id}">ID</td>
+        <td th:text="${unit.name}">Наименование</td>
+        <td>Удалить Редактировать</td>
+    </tr>
+</table>
+</body>
+
+<script>
+
+</script>
+</html>
