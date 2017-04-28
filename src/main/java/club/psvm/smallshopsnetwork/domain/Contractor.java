@@ -3,6 +3,7 @@ package club.psvm.smallshopsnetwork.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  * Created by JAVA-P on 27.04.2017.
@@ -15,13 +16,16 @@ import javax.persistence.Id;
 */
 
  @Entity
-public class Contractor {
+public class Contractor  {
 
      @Id
      @GeneratedValue
      Long id;
 
      String name;
+
+     @OneToOne
+     CashBox cashBox;
 
      boolean deleted;
 
@@ -39,6 +43,14 @@ public class Contractor {
 
      public void setName(String name) {
           this.name = name;
+     }
+
+     public CashBox getCashBox() {
+          return cashBox;
+     }
+
+     public void setCashBox(CashBox cashBox) {
+          this.cashBox = cashBox;
      }
 
      public boolean isDeleted() {
