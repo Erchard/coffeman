@@ -36,6 +36,16 @@ public class Product {
 
      boolean deleted;
 
+    public Product() {
+    }
+
+    public Product(String name, Company company, BigDecimal currentPrice, Unit unit) {
+        this.name = name;
+        this.company = company;
+        this.currentPrice = currentPrice;
+        this.unit = unit;
+    }
+
     public Long getId() {
         return id;
     }

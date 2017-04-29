@@ -3,6 +3,8 @@ package club.psvm.smallshopsnetwork.repositories;
 import club.psvm.smallshopsnetwork.domain.Unit;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 /**
  * Created by JAVA-P on 28.04.2017.
  */
@@ -13,4 +15,5 @@ import org.springframework.data.repository.CrudRepository;
  * All rights to the software code are owned by GateOn
 */
 public interface UnitRepository extends CrudRepository<Unit,Long> {
+    List<Unit> findAllByNameAndDeleted(String name,boolean deleted);
 }
