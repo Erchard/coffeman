@@ -1,6 +1,8 @@
 package club.psvm.smallshopsnetwork.services;
 
 import club.psvm.smallshopsnetwork.domain.Unit;
+import club.psvm.smallshopsnetwork.domain.actors.Company;
+import club.psvm.smallshopsnetwork.repositories.CompanyRepository;
 import club.psvm.smallshopsnetwork.repositories.UnitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,18 +24,41 @@ import java.util.List;
 public class InitService {
 
      @Autowired
+     CompanyRepository companyRepository;
+
+     @Autowired
     UnitRepository unitRepository;
 
      public void init(){
-         List<Unit> unitList = (List<Unit>) unitRepository.findAll();
-         if(unitList==null || unitList.size()==0){
-             List<Unit> units = new ArrayList<>();
-             units.add(new Unit("кг"));
-             units.add(new Unit("шт"));
-             units.add(new Unit("л"));
-             unitRepository.save(units);
-         }
+         initCompany();
+         initUnits();
+         initContractor();
+
+
 
      }
 
+
+    private void initCompany() {
+         List<Company> companyList = (List<Company>) companyRepository.findAll();
+         if(companyList==null || companyList.size()==0){
+             Company company = new Company("Small Shop Co");
+             companyRepository.save(company);
+         }
+    }
+
+    private void initUnits() {
+
+        List<Unit> unitList = (List<Unit>) unitRepository.findAll();
+        if(unitList==null || unitList.size()==0){
+            List<Unit> units = new ArrayList<>();
+            units.add(new Unit("кг"));
+            units.add(new Unit("шт"));
+            units.add(new Unit("л"));
+            unitRepository.save(units);
+        }
+    }
+
+    private void initContractor() {
+    }
 }
