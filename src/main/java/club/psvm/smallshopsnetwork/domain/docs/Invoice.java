@@ -1,6 +1,7 @@
 package club.psvm.smallshopsnetwork.domain.docs;
 
 import club.psvm.smallshopsnetwork.domain.actors.Contractor;
+import club.psvm.smallshopsnetwork.domain.actors.Store;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -32,6 +33,9 @@ public class Invoice {
     @ManyToOne(targetEntity = Contractor.class, fetch = FetchType.EAGER)
     Contractor contractor;
 
+    @ManyToOne
+    Store store;
+
     @Transient
     List<InvoiceLine> invoiceLineList = new ArrayList<>();
 
@@ -44,10 +48,11 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(String incomingNumber, LocalDateTime dateTime, Contractor contractor, boolean actual) {
+    public Invoice(String incomingNumber, LocalDateTime dateTime, Contractor contractor, Store store, boolean actual) {
         this.incomingNumber = incomingNumber;
         this.dateTime = dateTime;
         this.contractor = contractor;
+        this.store = store;
         this.actual = actual;
     }
 
@@ -89,6 +94,14 @@ public class Invoice {
 
     public void setContractor(Contractor contractor) {
         this.contractor = contractor;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public List<InvoiceLine> getInvoiceLineList() {

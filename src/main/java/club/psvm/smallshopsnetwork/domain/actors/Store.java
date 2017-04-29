@@ -31,6 +31,14 @@ public class Store {
 
      boolean deleted;
 
+    public Store() {
+    }
+
+    public Store(String name, CashBox cashBox) {
+        this.name = name;
+        this.cashBox = cashBox;
+    }
+
     public Long getId() {
         return id;
     }

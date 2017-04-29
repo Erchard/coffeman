@@ -11,6 +11,7 @@
         <td>Входящий номер</td>
         <td>Дата</td>
         <td>Поставщик</td>
+        <td>Склад</td>
         <td>Сумма</td>
         <td>Проведен</td>
         <td>Примечание</td>
@@ -21,6 +22,7 @@
         <td th:text="${invoice.incomingNumber}">Входящий номер</td>
         <td th:text="${invoice.dateTime}">Дата</td>
         <td th:text="${invoice.contractor.name}">Поставщик</td>
+        <td th:text="${invoice.store.name}">Поставщик</td>
         <td th:text="${invoice.total}">Сумма</td>
         <td th:text="${invoice.actual}">Проведен</td>
         <td th:text="${invoice.note}">примечание</td>

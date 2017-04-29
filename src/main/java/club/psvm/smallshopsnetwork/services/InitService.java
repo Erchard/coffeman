@@ -1,5 +1,6 @@
 package club.psvm.smallshopsnetwork.services;
 
+import club.psvm.smallshopsnetwork.domain.actors.Store;
 import club.psvm.smallshopsnetwork.domain.elements.*;
 import club.psvm.smallshopsnetwork.domain.actors.Company;
 import club.psvm.smallshopsnetwork.domain.actors.Contractor;
@@ -52,6 +53,9 @@ public class InitService {
     @Autowired
     RawStuffRepository rawStuffRepository;
 
+    @Autowired
+    StoreRepositories storeRepositories;
+
 
     public void init() {
 
@@ -62,7 +66,7 @@ public class InitService {
     private void initInvoice() {
         List<Invoice> invoiceList = (List<Invoice>) invoiceRepository.findAll();
         if (invoiceList == null || invoiceList.size() == 0) {
-            Invoice invoice = new Invoice("ТН-345654", LocalDateTime.now(), getContractor(), true);
+            Invoice invoice = new Invoice("ТН-345654", LocalDateTime.now(), getContractor(), getStore("Основоной склад"), true);
             invoiceRepository.save(invoice);
 
             createNewInvoiceLine(invoice, "молоко Хэппи", "молоко", "4", "18.00",
@@ -72,6 +76,17 @@ public class InitService {
             createNewInvoiceLine(invoice, "стаканчик Fortune 200", "стакан 200 мл", "400", "0.10",
                     "1", "шт", "шт");
         }
+    }
+
+    private Store getStore(String name) {
+        List<Store> storeList = storeRepositories.findAllByName(name);
+        if(storeList==null || storeList.size()==0) {
+            Store store = new Store(name,getNewCashBox());
+            storeRepositories.save(store);
+            return store;
+        }
+        else
+            return storeList.get(0);
     }
 
     void createNewInvoiceLine(Invoice invoice, String name, String rawStuff, String quantity, String price,
@@ -109,13 +124,17 @@ public class InitService {
 
         List<Contractor> contractorList = (List<Contractor>) contractorRepository.findAll();
         if (contractorList == null || contractorList.size() == 0) {
-            CashBox cashBox = new CashBox(getCompany());
-            cashBoxRepository.save(cashBox);
-            Contractor contractor = new Contractor("Best Supplier Ltd.", cashBox);
+            Contractor contractor = new Contractor("Best Supplier Ltd.", getNewCashBox());
             contractorRepository.save(contractor);
             return contractor;
         } else
             return contractorList.get(0);
+    }
+
+    private CashBox getNewCashBox(){
+        CashBox cashBox = new CashBox(getCompany());
+        cashBoxRepository.save(cashBox);
+        return cashBox;
     }
 
 
