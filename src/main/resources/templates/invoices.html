@@ -5,7 +5,7 @@
     <title>Входящие накладные</title>
 </head>
 <body>
-<table border="1" cellspacing="0">
+<table border="1" cellspacing="0" cellpadding="5">
     <tr>
         <td>Номер</td>
         <td>Входящий номер</td>
@@ -14,6 +14,7 @@
         <td>Сумма</td>
         <td>Проведен</td>
         <td>Примечание</td>
+        <td>Действия</td>
     </tr>
     <tr th:each="invoice : ${invoiceList}">
         <td th:text="${invoice.id}">Номер</td>
@@ -23,6 +24,7 @@
         <td th:text="${invoice.total}">Сумма</td>
         <td th:text="${invoice.actual}">Проведен</td>
         <td th:text="${invoice.note}">примечание</td>
+        <td ><a th:href=" '/invoice/'+ ${invoice.id}">Редактировать</a></td>
     </tr>
 </table>
 </body>

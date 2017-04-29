@@ -91,7 +91,7 @@ public class InvoiceLine {
     }
 
     public BigDecimal getTotal() {
-        return price.multiply(quantity);
+        return price.multiply(quantity).setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
 }

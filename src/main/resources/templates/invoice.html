@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Накладная</title>
+</head>
+<body>
+<a href="/invoices">  Все накладные</a>
+
+<h1>Накладная № <span th:text="${invoice.id}"></span></h1>
+
+<p >Входящий номер: <span th:text="${invoice.incomingNumber}"></span></p>
+<p >Дата: <span th:text="${invoice.dateTime}"></span></p>
+<p >Поставщик: <a  th:text="${invoice.contractor.name}"></a></p>
+<table border="1" cellspacing="0" cellpadding="5">
+    <tr>
+        <td>№</td>
+        <td>Наименование</td>
+        <td>Цена</td>
+        <td>Количество</td>
+        <td>Ед.изм.</td>
+        <td>Стоимость</td>
+    </tr>
+<tr th:each="invoiceLine : ${invoice.invoiceLineList}">
+    <td>+</td>
+    <td th:text="${invoiceLine.stuff.name}"></td>
+    <td th:text="${invoiceLine.price}"></td>
+    <td th:text="${invoiceLine.quantity}"></td>
+    <td th:text="${invoiceLine.stuff.unit.name}"></td>
+    <td th:text="${invoiceLine.total}"></td>
+</tr>
+</table>
+<p >Всего: <span th:text="${invoice.total}"></span></p>
+<p >Примечание: <span th:text="${invoice.note}"></span></p>
+<p >Проведен: <span th:text="${invoice.actual}"></span></p>
+
+</body>
+</html>
