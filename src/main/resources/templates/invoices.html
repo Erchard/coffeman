@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Входящие накладные</title>
+</head>
+<body>
+<table border="1" cellspacing="0">
+    <tr>
+        <td>Номер</td>
+        <td>Входящий номер</td>
+        <td>Дата</td>
+        <td>Поставщик</td>
+        <td>Сумма</td>
+        <td>Проведен</td>
+        <td>Примечание</td>
+    </tr>
+    <tr th:each="invoice : ${invoiceList}">
+        <td th:text="${invoice.id}">Номер</td>
+        <td th:text="${invoice.incomingNumber}">Входящий номер</td>
+        <td th:text="${invoice.dateTime}">Дата</td>
+        <td th:text="${invoice.contractor.name}">Поставщик</td>
+        <td th:text="${invoice.total}">Сумма</td>
+        <td th:text="${invoice.actual}">Проведен</td>
+        <td th:text="${invoice.note}">примечание</td>
+    </tr>
+</table>
+</body>
+</html>

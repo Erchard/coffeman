@@ -49,6 +49,9 @@ public class InitService {
     @Autowired
     StuffRepository stuffRepository;
 
+    @Autowired
+    RawStuffRepository rawStuffRepository;
+
 
     public void init() {
 
@@ -62,16 +65,43 @@ public class InitService {
             Invoice invoice = new Invoice("ТН-345654", LocalDateTime.now(), getContractor(), true);
             invoiceRepository.save(invoice);
 
-            createNewInvoiceLine(invoice, "молоко", "4", "18.00",
+            createNewInvoiceLine(invoice, "молоко Хэппи", "молоко", "4", "18.00",
                     "0.9", "шт", "л");
+            createNewInvoiceLine(invoice, "сахар Белый", "сахар", "10.00", "10.00",
+                    "1", "кг", "кг");
+            createNewInvoiceLine(invoice, "стаканчик Fortune 200", "стакан 200 мл", "400", "0.10",
+                    "1", "шт", "шт");
         }
     }
 
-    void createNewInvoiceLine(Invoice invoice, String name, String quantity, String price,
+    void createNewInvoiceLine(Invoice invoice, String name, String rawStuff, String quantity, String price,
                               String rawFactor, String stuffUnit, String rawUnit) {
-        Stuff stuff = createNewStuff(name, price, rawFactor, RawStuff rawStuff, rawUnit);
+        Stuff stuff = getStuff(name, price, rawFactor, rawStuff, stuffUnit, rawUnit);
         InvoiceLine invoiceLine = new InvoiceLine(invoice, stuff, new BigDecimal(quantity), new BigDecimal(price));
         invoiceLineRepository.save(invoiceLine);
+    }
+
+    private Stuff getStuff(String name, String price, String rawFactor, String rawStuff, String stuffUnit, String rawUnit) {
+        List<Stuff> stuffList = stuffRepository.findAllByName(name);
+        if (stuffList == null || stuffList.size() == 0) {
+            Stuff stuff = new Stuff(name, new BigDecimal(price), getRawStuff(rawStuff, price, rawFactor, rawUnit),
+                    new BigDecimal(rawFactor), getUnit(stuffUnit));
+            stuffRepository.save(stuff);
+            return stuff;
+        } else
+            return stuffList.get(0);
+    }
+
+    private RawStuff getRawStuff(String name, String stuffPrice, String rawFactor, String unit) {
+        List<RawStuff> rawStuffList = rawStuffRepository.findAllByName(name);
+        if (rawStuffList == null || rawStuffList.size() == 0) {
+            BigDecimal price = new BigDecimal(stuffPrice);
+            BigDecimal factor = new BigDecimal(rawFactor);
+            RawStuff rawStuff = new RawStuff(name, getCompany(), price.divide(factor), getUnit(unit));
+            rawStuffRepository.save(rawStuff);
+            return rawStuff;
+        } else
+            return rawStuffList.get(0);
     }
 
 

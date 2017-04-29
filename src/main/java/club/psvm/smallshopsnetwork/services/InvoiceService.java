@@ -7,6 +7,7 @@ import club.psvm.smallshopsnetwork.repositories.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,4 +45,15 @@ public class InvoiceService {
         return invoice;
     }
 
+    public List<Invoice> findAll() {
+        List<Invoice> invoiceList = (List<Invoice>) invoiceRepository.findAll();
+        if(invoiceList==null || invoiceList.size()==0){
+            return new ArrayList<>();
+        }
+        else {
+            invoiceList.removeIf(Invoice::isDeleted);
+            invoiceList.forEach(invoice -> fillLines(invoice));
+            return invoiceList;
+        }
+    }
 }

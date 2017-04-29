@@ -36,6 +36,16 @@ public class RawStuff {
     @ManyToOne(targetEntity = Unit.class)
     Unit unit;
 
+    public RawStuff() {
+    }
+
+    public RawStuff(String name, Company company, BigDecimal accountingPrice, Unit unit) {
+        this.name = name;
+        this.company = company;
+        this.accountingPrice = accountingPrice;
+        this.unit = unit;
+    }
+
     boolean deleted;
 
     public Long getId() {

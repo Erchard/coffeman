@@ -35,7 +35,7 @@ public class Invoice {
     @Transient
     List<InvoiceLine> invoiceLineList = new ArrayList<>();
 
-    String note ="";
+    String note = "";
 
     boolean actual;
 
@@ -44,7 +44,7 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(String incomingNumber, LocalDateTime dateTime, Contractor contractor,  boolean actual) {
+    public Invoice(String incomingNumber, LocalDateTime dateTime, Contractor contractor, boolean actual) {
         this.incomingNumber = incomingNumber;
         this.dateTime = dateTime;
         this.contractor = contractor;
@@ -101,11 +101,13 @@ public class Invoice {
 
     public BigDecimal getTotal() {
         BigDecimal total = new BigDecimal("0.00");
+
         for (InvoiceLine invoiceLine : invoiceLineList) {
             total = total.add(invoiceLine.getTotal());
+
         }
 
-        return total;
+        return total.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
     public boolean isActual() {
