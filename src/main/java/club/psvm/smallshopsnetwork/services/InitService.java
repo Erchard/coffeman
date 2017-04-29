@@ -66,7 +66,7 @@ public class InitService {
     private void initInvoice() {
         List<Invoice> invoiceList = (List<Invoice>) invoiceRepository.findAll();
         if (invoiceList == null || invoiceList.size() == 0) {
-            Invoice invoice = new Invoice("ТН-345654", LocalDateTime.now(), getContractor(), getStore("Основоной склад"), true);
+            Invoice invoice = new Invoice("ТН-345654", LocalDateTime.now(), getContractor(), getStore(MAIN_STORE), true);
             invoiceRepository.save(invoice);
 
             createNewInvoiceLine(invoice, "молоко Хэппи", "молоко", "4", "18.00",
@@ -171,4 +171,7 @@ public class InitService {
             return unit;
         } else return unitList.get(0);
     }
+
+
+     static final String MAIN_STORE = "Основоной склад";
 }
