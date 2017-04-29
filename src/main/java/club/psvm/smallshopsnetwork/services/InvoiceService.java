@@ -45,6 +45,8 @@ public class InvoiceService {
         return invoice;
     }
 
+
+    //TODO: findAll by Company
     public List<Invoice> findAll() {
         List<Invoice> invoiceList = (List<Invoice>) invoiceRepository.findAll();
         if(invoiceList==null || invoiceList.size()==0){
