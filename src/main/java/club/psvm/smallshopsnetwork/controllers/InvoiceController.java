@@ -29,7 +29,6 @@ public class InvoiceController {
 
         modelMap.addAttribute("invoice",invoiceService.findOneById(id));
 
-        System.out.println(((Invoice)modelMap.get("invoice")).getInvoiceLineList().size());
         return "invoice";
     }
 
