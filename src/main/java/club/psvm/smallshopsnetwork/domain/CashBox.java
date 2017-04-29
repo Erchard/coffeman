@@ -26,6 +26,13 @@ public class CashBox {
     @ManyToOne
     Company company;
 
+    public CashBox() {
+    }
+
+    public CashBox(Company company) {
+        this.company = company;
+    }
+
     public Long getAccount() {
         return account;
     }

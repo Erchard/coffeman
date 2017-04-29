@@ -1,11 +1,14 @@
 package club.psvm.smallshopsnetwork.services;
 
+import club.psvm.smallshopsnetwork.domain.CashBox;
 import club.psvm.smallshopsnetwork.domain.Unit;
 import club.psvm.smallshopsnetwork.domain.actors.Company;
+import club.psvm.smallshopsnetwork.domain.actors.Contractor;
+import club.psvm.smallshopsnetwork.repositories.CashBoxRepository;
 import club.psvm.smallshopsnetwork.repositories.CompanyRepository;
+import club.psvm.smallshopsnetwork.repositories.ContractorRepository;
 import club.psvm.smallshopsnetwork.repositories.UnitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,37 +23,46 @@ import java.util.List;
  * Created by www.gateon.net
  * All rights to the software code are owned by GateOn
 */
- @Service
+@Service
 public class InitService {
 
-     @Autowired
-     CompanyRepository companyRepository;
+    @Autowired
+    CompanyRepository companyRepository;
 
-     @Autowired
+    @Autowired
     UnitRepository unitRepository;
 
-     public void init(){
-         initCompany();
-         initUnits();
-         initContractor();
+    @Autowired
+    CashBoxRepository cashBoxRepository;
+
+    @Autowired
+    ContractorRepository contractorRepository;
+
+    Company company = null;
+
+    public void init() {
+        initCompany();
+        initUnits();
+        initContractor();
 
 
-
-     }
+    }
 
 
     private void initCompany() {
-         List<Company> companyList = (List<Company>) companyRepository.findAll();
-         if(companyList==null || companyList.size()==0){
-             Company company = new Company("Small Shop Co");
-             companyRepository.save(company);
-         }
+        List<Company> companyList = (List<Company>) companyRepository.findAll();
+        if (companyList == null || companyList.size() == 0) {
+            company = new Company("Small Shop Co");
+            companyRepository.save(company);
+        } else {
+            company = companyList.get(0);
+        }
     }
 
     private void initUnits() {
 
         List<Unit> unitList = (List<Unit>) unitRepository.findAll();
-        if(unitList==null || unitList.size()==0){
+        if (unitList == null || unitList.size() == 0) {
             List<Unit> units = new ArrayList<>();
             units.add(new Unit("кг"));
             units.add(new Unit("шт"));
@@ -60,5 +72,15 @@ public class InitService {
     }
 
     private void initContractor() {
+
+        List<Contractor> contractorList = (List<Contractor>) contractorRepository.findAll();
+        if (contractorList == null || contractorList.size() == 0) {
+            if (company == null) initCompany();
+            CashBox cashBox = new CashBox(company);
+            cashBoxRepository.save(cashBox);
+            Contractor contractor = new Contractor("Supplier of products", cashBox);
+            contractorRepository.save(contractor);
+        }
+
     }
 }

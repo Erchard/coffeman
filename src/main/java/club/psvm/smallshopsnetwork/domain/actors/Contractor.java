@@ -30,7 +30,15 @@ public class Contractor  {
 
      boolean deleted;
 
-     public Long getId() {
+    public Contractor() {
+    }
+
+    public Contractor(String name, CashBox cashBox) {
+        this.name = name;
+        this.cashBox = cashBox;
+    }
+
+    public Long getId() {
           return id;
      }
 
