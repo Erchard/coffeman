@@ -1,4 +1,4 @@
-package club.psvm.smallshopsnetwork.domain;
+package club.psvm.smallshopsnetwork.domain.elements;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,14 +16,14 @@ import java.math.BigDecimal;
  * All rights to the software code are owned by PSVM.club
 */
 
- @Entity
+@Entity
 public class Stuff {
 
-     @Id
-     @GeneratedValue
-     Long id;
+    @Id
+    @GeneratedValue
+    Long id;
 
-     String name;
+    String name;
 
     BigDecimal accountingPrice;
 
@@ -35,7 +35,18 @@ public class Stuff {
     @ManyToOne(targetEntity = Unit.class)
     Unit unit;
 
-     boolean deleted;
+    boolean deleted;
+
+    public Stuff() {
+    }
+
+    public Stuff(String name, BigDecimal accountingPrice, RawStuff rawStuff, BigDecimal rawFactor, Unit unit) {
+        this.name = name;
+        this.accountingPrice = accountingPrice;
+        this.rawStuff = rawStuff;
+        this.rawFactor = rawFactor;
+        this.unit = unit;
+    }
 
     public Long getId() {
         return id;

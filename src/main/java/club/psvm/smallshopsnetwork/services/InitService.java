@@ -1,15 +1,16 @@
 package club.psvm.smallshopsnetwork.services;
 
-import club.psvm.smallshopsnetwork.domain.CashBox;
-import club.psvm.smallshopsnetwork.domain.Product;
-import club.psvm.smallshopsnetwork.domain.Unit;
+import club.psvm.smallshopsnetwork.domain.elements.*;
 import club.psvm.smallshopsnetwork.domain.actors.Company;
 import club.psvm.smallshopsnetwork.domain.actors.Contractor;
+import club.psvm.smallshopsnetwork.domain.docs.Invoice;
+import club.psvm.smallshopsnetwork.domain.docs.InvoiceLine;
 import club.psvm.smallshopsnetwork.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -39,24 +40,51 @@ public class InitService {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    InvoiceRepository invoiceRepository;
+
+    @Autowired
+    InvoiceLineRepository invoiceLineRepository;
+
+    @Autowired
+    StuffRepository stuffRepository;
+
 
     public void init() {
 
-        initProducts();
+        initInvoice();
 
     }
 
-    private Contractor getContractor(String name) {
+    private void initInvoice() {
+        List<Invoice> invoiceList = (List<Invoice>) invoiceRepository.findAll();
+        if (invoiceList == null || invoiceList.size() == 0) {
+            Invoice invoice = new Invoice("ТН-345654", LocalDateTime.now(), getContractor(), true);
+            invoiceRepository.save(invoice);
+
+            createNewInvoiceLine(invoice, "молоко", "4", "18.00",
+                    "0.9", "шт", "л");
+        }
+    }
+
+    void createNewInvoiceLine(Invoice invoice, String name, String quantity, String price,
+                              String rawFactor, String stuffUnit, String rawUnit) {
+        Stuff stuff = createNewStuff(name, price, rawFactor, RawStuff rawStuff, rawUnit);
+        InvoiceLine invoiceLine = new InvoiceLine(invoice, stuff, new BigDecimal(quantity), new BigDecimal(price));
+        invoiceLineRepository.save(invoiceLine);
+    }
+
+
+    private Contractor getContractor() {
 
         List<Contractor> contractorList = (List<Contractor>) contractorRepository.findAll();
         if (contractorList == null || contractorList.size() == 0) {
             CashBox cashBox = new CashBox(getCompany());
             cashBoxRepository.save(cashBox);
-            Contractor contractor = new Contractor(name, cashBox);
+            Contractor contractor = new Contractor("Best Supplier Ltd.", cashBox);
             contractorRepository.save(contractor);
             return contractor;
-        }
-        else
+        } else
             return contractorList.get(0);
     }
 
@@ -64,7 +92,7 @@ public class InitService {
     private void initProducts() {
         List<Product> productList = (List<Product>) productRepository.findAll();
         if (productList == null || productList.size() == 0) {
-            createNewProduct("Молоко", "шт", "18.00");
+            createNewProduct("Латте", "шт", "27.00");
         }
 
     }

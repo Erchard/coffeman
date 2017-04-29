@@ -35,11 +35,21 @@ public class Invoice {
     @Transient
     List<InvoiceLine> invoiceLineList = new ArrayList<>();
 
-    String note;
+    String note ="";
 
     boolean actual;
 
     boolean deleted;
+
+    public Invoice() {
+    }
+
+    public Invoice(String incomingNumber, LocalDateTime dateTime, Contractor contractor,  boolean actual) {
+        this.incomingNumber = incomingNumber;
+        this.dateTime = dateTime;
+        this.contractor = contractor;
+        this.actual = actual;
+    }
 
     public Long getId() {
         return id;

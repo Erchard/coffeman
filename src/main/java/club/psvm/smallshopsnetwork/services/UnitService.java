@@ -1,6 +1,6 @@
 package club.psvm.smallshopsnetwork.services;
 
-import club.psvm.smallshopsnetwork.domain.Unit;
+import club.psvm.smallshopsnetwork.domain.elements.Unit;
 import club.psvm.smallshopsnetwork.repositories.UnitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

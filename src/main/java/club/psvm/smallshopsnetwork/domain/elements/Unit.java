@@ -1,4 +1,4 @@
-package club.psvm.smallshopsnetwork.domain;
+package club.psvm.smallshopsnetwork.domain.elements;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

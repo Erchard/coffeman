@@ -1,4 +1,4 @@
-package club.psvm.smallshopsnetwork.domain;
+package club.psvm.smallshopsnetwork.domain.elements;
 
 import club.psvm.smallshopsnetwork.domain.actors.Company;
 
@@ -17,34 +17,26 @@ import java.math.BigDecimal;
  * Created by www.psvm.club
  * All rights to the software code are owned by PSVM.club
 */
- @Entity
-public class Product {
 
-     @Id @GeneratedValue
-     Long id;
+@Entity
+public class RawStuff {
 
-     String name;
+    @Id
+    @GeneratedValue
+    Long id;
+
+    String name;
 
 
     @ManyToOne
     Company company;
 
-     BigDecimal currentPrice;
+    BigDecimal accountingPrice;
 
-     @ManyToOne(targetEntity = Unit.class)
-     Unit unit;
+    @ManyToOne(targetEntity = Unit.class)
+    Unit unit;
 
-     boolean deleted;
-
-    public Product() {
-    }
-
-    public Product(String name, Company company, BigDecimal currentPrice, Unit unit) {
-        this.name = name;
-        this.company = company;
-        this.currentPrice = currentPrice;
-        this.unit = unit;
-    }
+    boolean deleted;
 
     public Long getId() {
         return id;
@@ -70,12 +62,12 @@ public class Product {
         this.company = company;
     }
 
-    public BigDecimal getCurrentPrice() {
-        return currentPrice;
+    public BigDecimal getAccountingPrice() {
+        return accountingPrice;
     }
 
-    public void setCurrentPrice(BigDecimal currentPrice) {
-        this.currentPrice = currentPrice;
+    public void setAccountingPrice(BigDecimal accountingPrice) {
+        this.accountingPrice = accountingPrice;
     }
 
     public Unit getUnit() {

@@ -1,6 +1,6 @@
 package club.psvm.smallshopsnetwork.domain.docs;
 
-import club.psvm.smallshopsnetwork.domain.RawStuff;
+import club.psvm.smallshopsnetwork.domain.elements.RawStuff;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

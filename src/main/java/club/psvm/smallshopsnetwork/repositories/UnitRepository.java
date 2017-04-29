@@ -1,6 +1,6 @@
 package club.psvm.smallshopsnetwork.repositories;
 
-import club.psvm.smallshopsnetwork.domain.Unit;
+import club.psvm.smallshopsnetwork.domain.elements.Unit;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

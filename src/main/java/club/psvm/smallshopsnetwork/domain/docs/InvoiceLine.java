@@ -1,6 +1,6 @@
 package club.psvm.smallshopsnetwork.domain.docs;
 
-import club.psvm.smallshopsnetwork.domain.Stuff;
+import club.psvm.smallshopsnetwork.domain.elements.Stuff;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -32,7 +32,15 @@ public class InvoiceLine {
 
      boolean deleted;
 
+    public InvoiceLine() {
+    }
 
+    public InvoiceLine(Invoice invoice, Stuff stuff, BigDecimal quantity, BigDecimal price) {
+        this.invoice = invoice;
+        this.stuff = stuff;
+        this.quantity = quantity;
+        this.price = price;
+    }
 
     public Long getId() {
         return id;

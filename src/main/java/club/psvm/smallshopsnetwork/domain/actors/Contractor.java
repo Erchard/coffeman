@@ -1,6 +1,6 @@
 package club.psvm.smallshopsnetwork.domain.actors;
 
-import club.psvm.smallshopsnetwork.domain.CashBox;
+import club.psvm.smallshopsnetwork.domain.elements.CashBox;
 
 import javax.persistence.*;
 

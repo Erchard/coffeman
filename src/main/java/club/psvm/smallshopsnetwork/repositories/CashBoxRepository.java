@@ -1,6 +1,6 @@
 package club.psvm.smallshopsnetwork.repositories;
 
-import club.psvm.smallshopsnetwork.domain.CashBox;
+import club.psvm.smallshopsnetwork.domain.elements.CashBox;
 import org.springframework.data.repository.CrudRepository;
 
 /**

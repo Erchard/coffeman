@@ -3,6 +3,8 @@ package club.psvm.smallshopsnetwork.repositories;
 import club.psvm.smallshopsnetwork.domain.docs.Invoice;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 /**
  * Created by JAVA-P on 28.04.2017.
  */
@@ -13,4 +15,6 @@ import org.springframework.data.repository.CrudRepository;
  * All rights to the software code are owned by GateOn
 */
 public interface InvoiceRepository extends CrudRepository<Invoice, Long> {
+
+    List<Invoice> findAllByIncomingNumberAndDeleted(String incomingNumber, boolean deleted);
 }

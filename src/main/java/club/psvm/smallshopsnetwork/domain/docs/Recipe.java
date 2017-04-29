@@ -1,6 +1,6 @@
 package club.psvm.smallshopsnetwork.domain.docs;
 
-import club.psvm.smallshopsnetwork.domain.Product;
+import club.psvm.smallshopsnetwork.domain.elements.Product;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
