@@ -1,6 +1,7 @@
 package club.psvm.smallshopsnetwork.services;
 
 import club.psvm.smallshopsnetwork.domain.actors.Store;
+import club.psvm.smallshopsnetwork.domain.docs.Inventory;
 import club.psvm.smallshopsnetwork.domain.elements.*;
 import club.psvm.smallshopsnetwork.domain.actors.Company;
 import club.psvm.smallshopsnetwork.domain.actors.Contractor;
@@ -56,12 +57,18 @@ public class InitService {
     @Autowired
     StoreRepositories storeRepositories;
 
+    @Autowired
+    InventoryRepository inventoryRepository;
+
+    @Autowired
+    InventoryLineRepository inventoryLineRepository;
 
     public void init() {
 
         initInvoice();
-
+        initInventory();
     }
+
 
     private void initInvoice() {
         List<Invoice> invoiceList = (List<Invoice>) invoiceRepository.findAll();
@@ -80,12 +87,11 @@ public class InitService {
 
     private Store getStore(String name) {
         List<Store> storeList = storeRepositories.findAllByName(name);
-        if(storeList==null || storeList.size()==0) {
-            Store store = new Store(name,getNewCashBox());
+        if (storeList == null || storeList.size() == 0) {
+            Store store = new Store(name, getNewCashBox());
             storeRepositories.save(store);
             return store;
-        }
-        else
+        } else
             return storeList.get(0);
     }
 
@@ -131,7 +137,7 @@ public class InitService {
             return contractorList.get(0);
     }
 
-    private CashBox getNewCashBox(){
+    private CashBox getNewCashBox() {
         CashBox cashBox = new CashBox(getCompany());
         cashBoxRepository.save(cashBox);
         return cashBox;
@@ -172,6 +178,17 @@ public class InitService {
         } else return unitList.get(0);
     }
 
+    private void initInventory() {
+        List<Inventory> inventoryList = (List<Inventory>) inventoryRepository.findAll();
+        if (inventoryList == null || inventoryList.size() == 0) {
+            Inventory inventory = new Inventory(LocalDateTime.now(), getStore(MAIN_STORE), true);
+            inventoryRepository.save(inventory);
 
-     static final String MAIN_STORE = "Основоной склад";
+
+        }
+
+    }
+
+
+    static final String MAIN_STORE = "Основоной склад";
 }

@@ -20,6 +20,9 @@ public class InventoryController {
 
     @RequestMapping("/inventories")
     String getAllInventories(ModelMap modelMap){
+
+
+
         modelMap.addAttribute("inventoryList",inventoryServise.findAll());
 
         return "inventories";

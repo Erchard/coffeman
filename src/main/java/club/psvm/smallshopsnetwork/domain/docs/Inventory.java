@@ -32,6 +32,14 @@ public class Inventory {
     @Transient
     List<InventoryLine> inventoryLineList = new ArrayList<>();
 
+    public Inventory() {
+    }
+
+    public Inventory(LocalDateTime dateTime, Store store, boolean actual) {
+        this.dateTime = dateTime;
+        this.store = store;
+        this.actual = actual;
+    }
 
     boolean actual;
 

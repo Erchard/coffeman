@@ -30,7 +30,7 @@ public class InventoryLine {
     @ManyToOne(targetEntity = RawStuff.class)
     RawStuff rawStuff;
 
-    BigDecimal accountingPrice;
+    BigDecimal accountingSumm;
 
     BigDecimal expectedQuantity;
 
@@ -64,11 +64,15 @@ public class InventoryLine {
     }
 
     public BigDecimal getAccountingPrice() {
-        return accountingPrice;
+        return accountingSumm.divide(expectedQuantity);
     }
 
-    public void setAccountingPrice(BigDecimal accountingPrice) {
-        this.accountingPrice = accountingPrice;
+    public BigDecimal getAccountingSumm() {
+        return accountingSumm;
+    }
+
+    public void setAccountingSumm(BigDecimal accountingSumm) {
+        this.accountingSumm = accountingSumm;
     }
 
     public BigDecimal getExpectedQuantity() {
@@ -92,7 +96,7 @@ public class InventoryLine {
     }
 
     public BigDecimal getDifferenceSumm() {
-        return getDifference().multiply(accountingPrice);
+        return getDifference().multiply(getAccountingPrice());
     }
 
     public boolean isDeleted() {

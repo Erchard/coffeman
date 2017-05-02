@@ -1,8 +1,10 @@
 package club.psvm.smallshopsnetwork.repositories;
 
+import club.psvm.smallshopsnetwork.domain.actors.Store;
 import club.psvm.smallshopsnetwork.domain.docs.Invoice;
 import org.springframework.data.repository.CrudRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -17,4 +19,5 @@ import java.util.List;
 public interface InvoiceRepository extends CrudRepository<Invoice, Long> {
 
     List<Invoice> findAllByIncomingNumberAndDeleted(String incomingNumber, boolean deleted);
+    List<Invoice> findAllByStoreAndDeletedAndDateTimeBeforeAndActual(Store store, boolean deleted, LocalDateTime dateTime,boolean actual);
 }
