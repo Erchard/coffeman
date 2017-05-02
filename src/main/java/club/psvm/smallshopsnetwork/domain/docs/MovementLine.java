@@ -32,7 +32,7 @@ public class MovementLine {
 
      BigDecimal quantity;
 
-    BigDecimal accountingPrice;
+    BigDecimal accountingSumm;
 
     boolean deleted;
 
@@ -68,13 +68,18 @@ public class MovementLine {
         this.quantity = quantity;
     }
 
-    public BigDecimal getAccountingPrice() {
-        return accountingPrice;
+    public BigDecimal getAccountingSumm() {
+        return accountingSumm;
     }
 
-    public void setAccountingPrice(BigDecimal accountingPrice) {
-        this.accountingPrice = accountingPrice;
+    public void setAccountingSumm(BigDecimal accountingSumm) {
+        this.accountingSumm = accountingSumm;
     }
+
+    public BigDecimal getAccountingPrice() {
+        return accountingSumm.divide(quantity);
+    }
+
 
     public boolean isDeleted() {
         return deleted;
