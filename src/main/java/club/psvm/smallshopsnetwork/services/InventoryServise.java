@@ -52,6 +52,12 @@ public class InventoryServise {
 
     }
 
+    public Inventory findOne(Long id){
+        Inventory inventory = inventoryRepository.findOne(id);
+        fillLines(inventory);
+        return inventory;
+    }
+
     private Inventory fillLines(Inventory inventory) {
 
         List<InventoryLine> lineList = inventoryLineRepository.findAllByInventoryAndDeleted(inventory, false);

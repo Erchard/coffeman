@@ -6,8 +6,18 @@
 </head>
 <body>
 <table border="1" cellspacing="0" cellpadding="5">
+    <tr>
+        <td>ID</td>
+        <td>Дата время</td>
+        <td>Склад</td>
+        <td>Действия</td>
+    </tr>
+
     <tr th:each="inventory : ${inventoryList}">
-        <td>test</td>
+        <td th:text="${inventory.id}">test</td>
+        <td th:text="${inventory.dateTime}">test</td>
+        <td th:text="${inventory.store.name}">test</td>
+        <td><a  th:href=" '/inventory/'+ ${inventory.id}">Просмотреть</a></td>
     </tr>
 </table>
 </body>

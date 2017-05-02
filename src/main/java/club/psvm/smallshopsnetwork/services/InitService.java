@@ -63,6 +63,9 @@ public class InitService {
     @Autowired
     InventoryLineRepository inventoryLineRepository;
 
+    @Autowired
+    InventoryServise inventoryServise;
+
     public void init() {
 
         initInvoice();
@@ -183,8 +186,7 @@ public class InitService {
         if (inventoryList == null || inventoryList.size() == 0) {
             Inventory inventory = new Inventory(LocalDateTime.now(), getStore(MAIN_STORE), true);
             inventoryRepository.save(inventory);
-
-
+            inventoryServise.recalc(inventory);
         }
 
     }

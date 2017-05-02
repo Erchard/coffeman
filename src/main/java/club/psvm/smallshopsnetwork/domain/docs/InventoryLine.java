@@ -64,11 +64,11 @@ public class InventoryLine {
     }
 
     public BigDecimal getAccountingPrice() {
-        return accountingSumm.divide(expectedQuantity);
+        return accountingSumm.divide(expectedQuantity).setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
     public BigDecimal getAccountingSumm() {
-        return accountingSumm;
+        return accountingSumm.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setAccountingSumm(BigDecimal accountingSumm) {
@@ -76,7 +76,7 @@ public class InventoryLine {
     }
 
     public BigDecimal getExpectedQuantity() {
-        return expectedQuantity;
+        return expectedQuantity.setScale(3, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setExpectedQuantity(BigDecimal expectedQuantity) {

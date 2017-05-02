@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Инвентаризационная ведомость</title>
+</head>
+<body>
+<p th:text="${inventory.id}">test</p>
+<p th:text="${inventory.dateTime}">test</p>
+<p th:text="${inventory.store.name}">test</p>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <tr>
+        <td>Сырье</td>
+        <td>Учетная цена</td>
+        <td>Ожидаемое количество (по компьютеру)</td>
+        <td>Реальное количество (остаток на складе)</td>
+    </tr>
+    <tr th:each="inventoryLine : ${inventory.inventoryLineList}">
+        <td th:text="${inventoryLine.rawStuff.name}">Сырье</td>
+        <td th:text="${inventoryLine.accountingPrice}">Учетная цена</td>
+        <td th:text="${inventoryLine.expectedQuantity}">Ожидаемое количество (по компьютеру)</td>
+        <td><input th:value="${inventoryLine.realQuantity}" /></td>
+    </tr>
+</table>
+</body>
+</html>

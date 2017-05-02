@@ -4,8 +4,10 @@ import club.psvm.smallshopsnetwork.services.InventoryServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**
@@ -28,4 +30,9 @@ public class InventoryController {
         return "inventories";
     }
 
+    @RequestMapping("/inventory/{id}")
+    String oneInventory(ModelMap modelMap, @PathVariable Long id){
+        modelMap.addAttribute("inventory",inventoryServise.findOne(id));
+        return "inventory";
+    }
 }
