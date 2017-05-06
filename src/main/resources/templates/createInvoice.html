@@ -10,29 +10,34 @@
 <body>
 <a href="/invoices">  Все накладные</a>
 
-<form action="/invoice/create" method="post">
+<form action="/invoice/save" method="post">
 
 <h1>Накладная № <span th:text="${invoice.id}"></span></h1>
-
+    <input name="id" th:value="${invoice.id}" type="hidden"/>
 
 
 <p >Входящий номер: <input name="incomingNumber" th:value="${invoice.incomingNumber}"/></p>
 <p >Дата: <input type="datetime" name="dateTime" th:value="${invoice.dateTime}"/></p>
 
 <p >Поставщик:
-    <select th:field="${invoice.contractor.id}" name="contractor_id">
-    <option th:each="contractor : ${contractorList}" th:value="contractor.id" th:text="${contractor.name}"></option>
+    <select th:field="${invoice.contractor.id}" >
+    <option th:each="contractor : ${contractorList}" th:value="${contractor.id}" th:text="${contractor.name}"></option>
     </select>
 </p>
 
     <p >Склад:
-        <select th:field="${invoice.store.id}" name="store_id">
-            <option th:each="store : ${storeList}" th:value="store.id" th:text="${store.name}"></option>
+        <select th:field="${invoice.store.id}" >
+            <option th:each="store : ${storeList}" th:value="${store.id}" th:text="${store.name}"></option>
         </select>
     </p>
 
+    <p >Примечание: <input name="note" th:value="${invoice.note}"/></p>
+    <p >Проведен: <input name="actual" type="checkbox" th:checked="${invoice.actual}"/></p>
 
-<!--<p >Склад: <a  th:text="${invoice.store.name}"></a></p>-->
+
+    <input type="submit" value="Submit"/>
+</form>
+
 <table border="1" cellspacing="0" cellpadding="5">
     <tr>
         <td>№</td>
@@ -51,10 +56,18 @@
         <td th:text="${invoiceLine.total}"></td>
     </tr>
 </table>
-<p >Всего: <span th:text="${invoice.total}"></span></p>
-<p >Примечание: <span th:text="${invoice.note}"></span></p>
-<p >Проведен: <span th:text="${invoice.actual}"></span></p>
 
+
+<p >Всего: <span th:text="${invoice.total}"></span></p>
+
+<form action="/invoice/addline" method="get">
+    <input name="id" th:value="${invoice.id}" type="hidden"/>
+
+    <p >Товар:
+        <select>
+            <option th:each="stuff : ${stuffList}" th:value="${stuff.id}" th:text="${stuff.name}"></option>
+        </select>
+    </p>
 
     <input type="submit" value="Submit"/>
 </form>
