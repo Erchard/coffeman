@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface ContractorRepository extends CrudRepository<Contractor,Long>{
     List<Contractor> findAllByNameAndDeleted(String name, boolean deleted);
+    Contractor findOneByName(String name);
 }

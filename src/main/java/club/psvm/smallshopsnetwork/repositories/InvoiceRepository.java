@@ -16,6 +16,7 @@ import java.util.List;
  * Created by www.gateon.net
  * All rights to the software code are owned by GateOn
 */
+
 public interface InvoiceRepository extends CrudRepository<Invoice, Long> {
 
     List<Invoice> findAllByIncomingNumberAndDeleted(String incomingNumber, boolean deleted);

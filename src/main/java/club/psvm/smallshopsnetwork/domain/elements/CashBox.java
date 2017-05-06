@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
  * Created by www.gateon.net
  * All rights to the software code are owned by GateOn
 */
+
  @Entity
 public class CashBox {
 

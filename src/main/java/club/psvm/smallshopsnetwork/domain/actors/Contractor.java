@@ -3,6 +3,7 @@ package club.psvm.smallshopsnetwork.domain.actors;
 import club.psvm.smallshopsnetwork.domain.elements.CashBox;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by JAVA-P on 27.04.2017.
@@ -14,21 +15,23 @@ import javax.persistence.*;
  * All rights to the software code are owned by PSVM.club
 */
 
- @Entity
-public class Contractor  {
+@Entity
+public class Contractor {
 
-     @Id
-     @GeneratedValue
-     Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-     String name;
+    @NotNull
+    private String name;
 
+    private String telNumber;
+    private String comment;
 
+    @OneToOne
+    private CashBox cashBox;
 
-     @OneToOne
-     CashBox cashBox;
-
-     boolean deleted;
+    private boolean deleted;
 
     public Contractor() {
     }
@@ -39,36 +42,50 @@ public class Contractor  {
     }
 
     public Long getId() {
-          return id;
-     }
+        return id;
+    }
 
-     public void setId(Long id) {
-          this.id = id;
-     }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-     public String getName() {
-          return name;
-     }
+    public String getName() {
+        return name;
+    }
 
-     public void setName(String name) {
-          this.name = name;
-     }
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public String getTelNumber() {
+        return telNumber;
+    }
 
+    public void setTelNumber(String telNumber) {
+        this.telNumber = telNumber;
+    }
 
-     public CashBox getCashBox() {
-          return cashBox;
-     }
+    public String getComment() {
+        return comment;
+    }
 
-     public void setCashBox(CashBox cashBox) {
-          this.cashBox = cashBox;
-     }
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
-     public boolean isDeleted() {
-          return deleted;
-     }
+    public CashBox getCashBox() {
+        return cashBox;
+    }
 
-     public void setDeleted(boolean deleted) {
-          this.deleted = deleted;
-     }
+    public void setCashBox(CashBox cashBox) {
+        this.cashBox = cashBox;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 }

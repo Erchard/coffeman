@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!--&lt;!&ndash;<meta charset="UTF-8"/>&ndash;&gt;-->
+    <title>Title</title>
+    <!--<script src="/static/addInput.js" language="Javascript" type="text/javascript"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+<a href="/invoices">  Все накладные</a>
+
+<form action="/invoice/create" method="post">
+
+<h1>Накладная № <span th:text="${invoice.id}"></span></h1>
+
+
+
+<p >Входящий номер: <input name="incomingNumber" th:value="${invoice.incomingNumber}"/></p>
+<p >Дата: <input type="datetime" name="dateTime" th:value="${invoice.dateTime}"/></p>
+
+<p >Поставщик:
+    <select th:field="${invoice.contractor.id}" name="contractor_id">
+    <option th:each="contractor : ${contractorList}" th:value="contractor.id" th:text="${contractor.name}"></option>
+    </select>
+</p>
+
+
+
+<!--<p >Склад: <a  th:text="${invoice.store.name}"></a></p>-->
+<table border="1" cellspacing="0" cellpadding="5">
+    <tr>
+        <td>№</td>
+        <td>Наименование</td>
+        <td>Цена</td>
+        <td>Количество</td>
+        <td>Ед.изм.</td>
+        <td>Стоимость</td>
+    </tr>
+    <tr th:each="invoiceLine : ${invoice.invoiceLineList}">
+        <td>+</td>
+        <td th:text="${invoiceLine.stuff.name}"></td>
+        <td th:text="${invoiceLine.price}"></td>
+        <td th:text="${invoiceLine.quantity}"></td>
+        <td th:text="${invoiceLine.stuff.unit.name}"></td>
+        <td th:text="${invoiceLine.total}"></td>
+    </tr>
+</table>
+<p >Всего: <span th:text="${invoice.total}"></span></p>
+<p >Примечание: <span th:text="${invoice.note}"></span></p>
+<p >Проведен: <span th:text="${invoice.actual}"></span></p>
+
+
+    <input type="submit" value="Submit"/>
+</form>
+
+</body>
+</html>
+
+

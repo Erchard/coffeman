@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Редактирование</title>
+</head>
+<body>
+<a href="/contractors"> Все поставщики</a>
+
+<div th:if="${contractor}">
+    <h1>Поставщик № <span th:text="${contractor.id}"></span></h1>
+    <p>Название: <a th:text="${contractor.name}"></a></p>
+
+    <form action="#" th:action="@{/contractor/edit}" th:object="${contractor}" method="post">
+        <table border="1">
+            <tr>
+                <td><label/>№</td>
+                <td><a th:text="${contractor.id}"></a>
+                    <input type="hidden" th:field="*{id}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><label/>Название</td>
+                <td><input type="text" th:field="*{name}"/></td>
+            </tr>
+            <tr>
+                <td><label/>Номер телефона</td>
+                <td><input type="text" th:field="*{telNumber}"/></td>
+            </tr>
+            <tr>
+                <td><label/>Комментарий</td>
+                <td><input type="text" th:field="*{comment}"/></td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit"/>
+    </form>
+</div>
+
+</body>
+</html>

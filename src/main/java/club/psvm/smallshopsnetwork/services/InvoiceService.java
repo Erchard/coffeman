@@ -7,6 +7,7 @@ import club.psvm.smallshopsnetwork.repositories.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
  * Created by www.gateon.net
  * All rights to the software code are owned by GateOn
 */
+
 @Service
 public class InvoiceService {
 
@@ -58,4 +60,19 @@ public class InvoiceService {
             return invoiceList;
         }
     }
+
+    public void save(Invoice invoice) {
+        invoiceRepository.save(invoice);
+    }
+
+
+    public  Invoice getNew() {
+
+        Invoice invoice = new Invoice();
+        invoice.setDeleted(true);
+        invoice.setDateTime(LocalDateTime.now());
+        invoiceRepository.save(invoice);
+        return invoice;
+    }
+
 }

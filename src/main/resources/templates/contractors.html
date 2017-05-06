@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Список поставщиков</title>
+</head>
+<body>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <tr>
+        <td>Номер</td>
+        <td>Поставщик</td>
+        <td>Действия</td>
+        <td>Действия</td>
+    </tr>
+    <tr th:each="contractor : ${contractorList}">
+        <td th:text="${contractor.id}">Номер</td>
+        <td th:text="${contractor.name}">Поставщик</td>
+        <td ><a th:href=" '/contractor/'+ ${contractor.id}">Редактировать</a></td>
+        <td ><a th:href=" '/contractor/remove/'+ ${contractor.id}">Удалить</a></td>
+    </tr>
+</table>
+
+<br/>
+<button>
+    <a th:href="'/createContractor'">Добавить нового поставщика</a>
+</button>
+
+</body>
+</html>
