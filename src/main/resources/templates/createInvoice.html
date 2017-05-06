@@ -25,6 +25,11 @@
     </select>
 </p>
 
+    <p >Склад:
+        <select th:field="${invoice.store.id}" name="store_id">
+            <option th:each="store : ${storeList}" th:value="store.id" th:text="${store.name}"></option>
+        </select>
+    </p>
 
 
 <!--<p >Склад: <a  th:text="${invoice.store.name}"></a></p>-->

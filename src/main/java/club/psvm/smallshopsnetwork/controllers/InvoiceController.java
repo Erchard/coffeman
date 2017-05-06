@@ -4,6 +4,7 @@ import club.psvm.smallshopsnetwork.domain.docs.Invoice;
 import club.psvm.smallshopsnetwork.domain.docs.InvoiceLine;
 import club.psvm.smallshopsnetwork.services.ContractorService;
 import club.psvm.smallshopsnetwork.services.InvoiceService;
+import club.psvm.smallshopsnetwork.services.StoreService;
 import com.sun.rowset.internal.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ public class InvoiceController {
 
     private InvoiceService invoiceService;
     private ContractorService contractorService;
-//    private
+    private StoreService storeService;
 
     @RequestMapping("/invoices")
     String invoiceList(ModelMap modelMap){
@@ -47,6 +48,7 @@ public class InvoiceController {
 
         modelMap.addAttribute("invoice", invoiceService.getNew());
         modelMap.addAttribute("contractorList", contractorService.findAll());
+        modelMap.addAttribute("storeList", storeService.findAll());
         return "createInvoice";
     }
 
@@ -81,5 +83,10 @@ public class InvoiceController {
     @Autowired
     public void setContractorService(ContractorService contractorService) {
         this.contractorService = contractorService;
+    }
+
+    @Autowired
+    public void setStoreService(StoreService storeService) {
+        this.storeService = storeService;
     }
 }
